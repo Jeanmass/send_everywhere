@@ -5,7 +5,7 @@ Exercice from my NodeJS course in college.
 
 ### Objective
 
-I hade to write a simple app that allows a user to send the same message over email, twitter, Facebook and Slack. Every message has to be saved in a text file with the time.
+I had to write a simple app that allows a user to send the same message over email, twitter, Facebook and Slack. Every message has to be saved in a text file with the time.
 
 
 ### Credits
