@@ -1,0 +1,14 @@
+{
+    "name": "send-everywhere",
+    "version": "0.1.0",
+    "dependencies": {
+        "express": "~4.15.2",
+	"nodemailer": "~3.1.5",
+	"fb": "~1.1.1",
+	"twitter": "~1.7.0",
+	"body-parser": "~1.17.1",
+	"slack-node": "~0.1.8"
+    },
+    "author": "Jean Mass <jeansebastien.masset@gmail.com",
+    "description": "Send a message everywhere"
+}
