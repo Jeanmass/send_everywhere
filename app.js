@@ -1,8 +1,17 @@
-/*
-For this app to work, you have to paste all necessary informations like email adress, user names, tokens for every social network account your want your message to be sent to.
-There is a comment "// FILL IN" after every line you need to edit.
-*/
-
+// Fill all this and it should work
+var recipientMailAdress = "youremail@yourprovider.com",
+    facebookAccessToken = 'paste_access_token',
+    slackWebhook = "paste_web_hook",
+    twitterConsumerKey = 'paste_consumer_key',
+    twitterConsumerSecret = 'paste_consumer_secret',
+    twitterAccessTokenKey = 'paste_access_token_key',
+    twitterAccessTokenSecret = 'paste_access_token_secret',
+    slackChannel = "#chosenchannel",
+    slackUserName = "john_doe",
+    mailProvider = 'provider',
+    mailUser = 'youremail@yourprovider.com',
+    mailPass = 'your_passphrase',
+    mailSender = '"Your name" <youremail@yourprovider.com>';
 
 // init Express
 var express = require('express');
@@ -14,16 +23,16 @@ var fs = require('fs');
 
 // init nodemailer
 const nodemailer = require('nodemailer');
-var mail = "youremail@yourprovider.com"; // FILL IN
+var mail = recipientMailAdress;
 
 // init Facebook
 var FB = require('fb');
-FB.setAccessToken('paste_access_token'); // FILL IN
+FB.setAccessToken(facebookAccessToken);
 
 // init Slack
 var Slack = require('slack-node');
 slack = new Slack();
-slack.setWebhook("paste_web_hook");  // FILL IN
+slack.setWebhook(slackWebhook);
 
 // init body-parser
 var bodyParser = require('body-parser');
@@ -32,10 +41,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // init twitter
 var Twitter = require('twitter');
 var client = new Twitter({
-  consumer_key: 'paste_consumer_key', // FILL IN
-  consumer_secret: 'paste_consumer_secret', // FILL IN
-  access_token_key: 'paste_access_token_key', // FILL IN
-  access_token_secret: 'paste_access_token_secret' // FILL IN
+  consumer_key: twitterConsumerKey,
+  consumer_secret: twitterConsumerSecret,
+  access_token_key: twitterAccessTokenKey,
+  access_token_secret: twitterAccessTokenSecret
 });
 
 // Create global variables for the message
@@ -67,8 +76,8 @@ app.post('/send', function(req, res) {
 // Slack
 function sendSlack(message) {
   slack.webhook({
-    channel: "#chosenchannel",  // FILL IN
-    username: "john_doe",  // FILL IN
+    channel: slackChannel,
+    username: slackUserName,
     text: message
   }, function(err, response) {
     console.log("Slack Response :\n")
@@ -106,14 +115,14 @@ function sendFacebook(message) {
 // Mail
 function sendMail(title,body) {
   let mailer = nodemailer.createTransport({
-    service: 'provider',  // FILL IN
+    service: mailProvider,
     auth: {
-      user: 'youremail@yourprovider.com',  // FILL IN
-      pass: 'your_passphrase'  // FILL IN
+      user: mailUser,
+      pass: mailPass
     }
   });
   let mailOptions = {
-    from: '"Your name" <youremail@yourprovider.com>',  // FILL IN
+    from: mailSender,  // FILL IN
     to: mail,
     subject: title,
     text: body,
